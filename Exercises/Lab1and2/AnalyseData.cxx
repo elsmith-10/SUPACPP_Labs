@@ -26,8 +26,35 @@ int main()
     }
     
     //Output to the terminal
-    std::cout << "The data in the file is: "<< std::endl;
-    for(auto dataVal: data){
+    //std::cout << "The data in the file is: "<< std::endl;
+    //for(auto dataVal: data){
+      //  std::cout << dataVal << std::endl;
+    //}
+
+    //Create variables to write the data into
+    std::vector<std::string> x;
+    std::vector<std::string> y;
+
+    //Read the data into the variables
+    std::string x_val;
+    std::string y_val;
+
+        //(std::getline(data_file,x_val,',')
+            //x.push_back(x_val);
+        
+        //(std::getline(data_file,y_val))
+            //y.push_back(y_val);
+
+
+
+    //Output to the terminal
+    std::cout << "The data in x is: "<< std::endl;
+    for(auto dataVal: x){
+        std::cout << dataVal << std::endl;
+    }
+
+    std::cout << "The data in y is: "<< std::endl;
+    for(auto dataVal: y){
         std::cout << dataVal << std::endl;
     }
 
