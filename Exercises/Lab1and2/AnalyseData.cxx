@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <cmath>
 
 int main()
 {
@@ -72,7 +73,7 @@ int main()
 
     //Check to see if the user input is valid
     if(N > x.size()){
-        std::cout << "The number of lines is too large, therefore the first 5 lines will be printed" << std::endl;
+        std::cout << "The number of lines is too large, therefore the first 5 lines will be printed:" << std::endl;
         N = 5;
     }
     else{ std::cout << "The first " << N << " lines of the data are: " << std::endl;
@@ -81,6 +82,21 @@ int main()
     //Print the x and y values together to terminal for value N
     for(int i = 0; i < N; i++){
          std::cout << x[i] << ", " << y[i] << std::endl;
+    }
+
+    //Make vector to write the magnitudes into
+    std::vector<std::string> mag;
+
+    //Calculate the magnitudes of x and y
+    for(int i = 0; i < x.size(); i++){
+        float magnitude = sqrt((std::stof(x[i])*std::stof(x[i]))+(std::stof(y[i])*std::stof(y[i])));
+        mag.push_back(std::to_string(magnitude));
+    }
+
+    //Print magnitudes to terminal for N specified
+    std::cout << "The magnitudes of the first " << N << " lines are: " << std::endl;
+    for(int i = 0; i < N; i++){
+        std::cout << mag[i] << std::endl;
     }
 
     data_file.close(); 
