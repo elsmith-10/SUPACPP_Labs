@@ -53,14 +53,34 @@ int main()
     y.erase(y.begin());
 
     //Output to the terminal
-    std::cout << "The data in x is: "<< std::endl;
-    for(auto dataVal: x){
-        std::cout << dataVal << std::endl;
-    }
+    //std::cout << "The data in x is: "<< std::endl;
+    //for(auto dataVal: x){
+    //    std::cout << dataVal << std::endl;
+    //}
 
-    std::cout << "The data in y is: "<< std::endl;
-    for(auto dataVal: y){
-        std::cout << dataVal << std::endl;
+    //std::cout << "The data in y is: "<< std::endl;
+    //for(auto dataVal: y){
+    //    std::cout << dataVal << std::endl;
+    //}
+
+    //Question to terminal user about number of lines to print and max
+    std::cout << "How many lines would you like printing? (max: " << x.size() << ")" << std::endl;
+    
+    //Create variable for user input
+    int N;
+    std::cin >> N;
+
+    //Check to see if the user input is valid
+    if(N > x.size()){
+        std::cout << "The number of lines is too large, therefore the first 5 lines will be printed" << std::endl;
+        N = 5;
+    }
+    else{ std::cout << "The first " << N << " lines of the data are: " << std::endl;
+    }
+    
+    //Print the x and y values together to terminal for value N
+    for(int i = 0; i < N; i++){
+         std::cout << x[i] << ", " << y[i] << std::endl;
     }
 
     data_file.close(); 
