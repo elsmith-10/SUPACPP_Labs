@@ -20,10 +20,10 @@ int main()
     }
 
     //Read the data line by line
-    std::string line;
-    while (std::getline(data_file,line)){
-        data.push_back(line);
-    }
+    //std::string line;
+    //while (std::getline(data_file,line)){
+    //    data.push_back(line);
+    //}
     
     //Output to the terminal
     //std::cout << "The data in the file is: "<< std::endl;
@@ -39,13 +39,18 @@ int main()
     std::string x_val;
     std::string y_val;
 
-        //(std::getline(data_file,x_val,',')
-            //x.push_back(x_val);
-        
-        //(std::getline(data_file,y_val))
-            //y.push_back(y_val);
+    // Read one x,y pair per line and split into lists.
+    while (std::getline(data_file, x_val, ',')) {
+        if (!std::getline(data_file, y_val)) {
+            break;
+        }
+        x.push_back(x_val);
+        y.push_back(y_val);
+    }
 
-
+    //remove the tile from the lists
+    x.erase(x.begin());
+    y.erase(y.begin());
 
     //Output to the terminal
     std::cout << "The data in x is: "<< std::endl;
