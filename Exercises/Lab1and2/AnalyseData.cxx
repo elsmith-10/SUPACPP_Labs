@@ -41,8 +41,20 @@ int main()
     x.erase(x.begin());
     y.erase(y.begin());
 
-    std::vector<std::string> A = print_lines(x, y);
-    std::vector<std::string> B = calculate_magnitude(x, y);
+//Ask the user what function they would like to use
+    std::cout << "What function would you like to use? (1: Print Lines, 2: Calculate Magnitudes)" << std::endl;
+    int function_choice;
+    std::cin >> function_choice;
+
+    if(function_choice ==1){
+        std::vector<std::string> A = print_lines(x, y);
+    }
+    else if(function_choice ==2){
+        std::vector<std::string> B = calculate_magnitude(x, y);
+    }
+    else{
+        std::cout << "Not a function choice" << std::endl;
+    }
 
     data_file.close(); 
 
