@@ -83,7 +83,7 @@ std::string linear_fit(std::vector<std::string> x, std::vector<std::string> y){
 
         sum_x += x_val;
         sum_y += y_val;
-        sum_xy += x_val * y_val;
+        sum_xy += (x_val * y_val);
         sum_x_sqrd += x_sqrd;
     } 
     
@@ -91,8 +91,59 @@ std::string linear_fit(std::vector<std::string> x, std::vector<std::string> y){
     m = ((N*sum_xy)-(sum_x*sum_y))/((N*sum_x_sqrd)-(sum_x*sum_x));
     c = ((sum_x_sqrd*sum_y)-(sum_xy*sum_x))/((N*sum_x_sqrd)-(sum_x*sum_x));
 
+    //Open and split errors file into x and y errors
+    //Open file
+    std::string inputfile = "error2D_float.txt";
+    std::ifstream data_file;
+    std::vector<std::string> data;
+    data_file.open(inputfile);
+
+    //Create variables to write the data into
+    std::vector<std::string> x_error;
+    std::vector<std::string> y_error;
+
+    //Read the data into the variables
+    std::string x_err_val;
+    std::string y_err_val;
+
+    // Read one x,y pair per line and split into lists.
+    while (std::getline(data_file, x_err_val, ',')) {
+        if (!std::getline(data_file, y_err_val)) {
+            break;
+        }
+        x_error.push_back(x_err_val);
+        y_error.push_back(y_err_val);
+    }
+
+    //remove the tile from the lists
+    x_error.erase(x_error.begin());
+    y_error.erase(y_error.begin());
+
+    data_file.close();
+
+    //Create vectors for the parameters of chi squared
+    std::vector<std::string> observed = y;
+    std::vector<std::string> expected;
+    std::vector<std::string> error = y_error;
+
+    //Calculate expected values from the straight line fit
+    for(int i = 0; i < x.size(); i++){
+        float expected_val = m*std::stof(x[i]) + c;
+        expected.push_back(std::to_string(expected_val));
+    }
+
+    //Calculate the chi squared value
+    float chi_squared = 0;
+    for(int i = 0; i < observed.size(); i++){
+        float obs = std::stof(observed[i]);
+        float exp = std::stof(expected[i]);
+        float err = std::stof(error[i]);
+        chi_squared += ((obs - exp) * (obs - exp)) / (err * err);
+    }
+
     //print to terminal
     print("The straight line fit is: y = " + std::to_string(m) + "x + " + std::to_string(c));
+    print("The chi-squared value is: " + std::to_string(chi_squared));
 
     //Create file with the straight line fit
     std::string filename = "linear_fit.txt";
@@ -101,6 +152,7 @@ std::string linear_fit(std::vector<std::string> x, std::vector<std::string> y){
 
     //Append file with straight line fit
     outputfile << "y = " << m << "x + " << c << std::endl;
+    outputfile << "Chi-squared value: " << chi_squared << std::endl;
 
     outputfile.close();
 
