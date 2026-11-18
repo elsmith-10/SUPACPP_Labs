@@ -42,7 +42,7 @@ int main()
     y.erase(y.begin());
 
 //Ask the user what function they would like to use
-    std::cout << "What function would you like to use? (1: Print Lines, 2: Calculate Magnitudes)" << std::endl;
+    std::cout << "What function would you like to use? (1: Print Lines, 2: Calculate Magnitudes, 3:Linear Fit)" << std::endl;
     int function_choice;
     std::cin >> function_choice;
 
@@ -52,12 +52,13 @@ int main()
     else if(function_choice ==2){
         std::vector<std::string> B = calculate_magnitude(x, y);
     }
+    else if(function_choice ==3){
+        std::string C = linear_fit(x, y);
+    }
     else{
         std::cout << "Not a function choice" << std::endl;
     }
 
-    std::string A = linear_fit(x, y);
-    
     data_file.close(); 
 
     return 0;
