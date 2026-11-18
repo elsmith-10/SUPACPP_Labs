@@ -7,16 +7,20 @@
 std::vector<std::string> print(std::vector<std::string> A){
 for(int i = 0; i < A.size(); i++){
         std::cout << A[i] << std::endl;
+return A;        
 }
 }
 float print(float A){
     std::cout << A << std::endl;
+return A;
 }
 int print(int A){
     std::cout << A << std::endl;
+return A;
 }
 std::string print(std::string A){
     std::cout << A << std::endl;
+return A;
 }
 
 //Function for printing lines to the terminal
