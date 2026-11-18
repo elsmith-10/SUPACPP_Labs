@@ -158,3 +158,14 @@ std::string linear_fit(std::vector<std::string> x, std::vector<std::string> y){
 
     return filename;
 }
+
+//function for  calculating x to power y
+std::vector<std::string>xpowery(std::vector<std::string>x,std::vector<std::string>y){
+    
+    //convert y into integer valuse
+    std::vector<int> y_int = std::stoi(y);
+
+    //Use recursive method
+    
+
+}

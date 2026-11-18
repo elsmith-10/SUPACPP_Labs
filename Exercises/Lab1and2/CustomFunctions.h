@@ -7,3 +7,4 @@ std::vector<std::string> print(std::vector<std::string> A);
 std::string print(std::string A);
 float print(float A);
 int print(int A);
+std::vector<std::string>xpowery(std::vector<std::string>x,std::vector<std::string>y);
