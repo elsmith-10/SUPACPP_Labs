@@ -56,6 +56,8 @@ int main()
         std::cout << "Not a function choice" << std::endl;
     }
 
+    std::string A = linear_fit(x, y);
+    
     data_file.close(); 
 
     return 0;
