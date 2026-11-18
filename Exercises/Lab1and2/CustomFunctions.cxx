@@ -3,6 +3,22 @@
 #include <vector>
 #include <cmath>
  
+//Create overload print functions
+std::vector<std::string> print(std::vector<std::string> A){
+for(int i = 0; i < A.size(); i++){
+        std::cout << A[i] << std::endl;
+}
+}
+float print(float A){
+    std::cout << A << std::endl;
+}
+int print(int A){
+    std::cout << A << std::endl;
+}
+std::string print(std::string A){
+    std::cout << A << std::endl;
+}
+
 //Function for printing lines to the terminal
 std::vector<std::string> print_lines(std::vector<std::string> x, std::vector<std::string> y){
     //Question to terminal user about number of lines to print and max
@@ -37,11 +53,9 @@ std::vector<std::string> calculate_magnitude(std::vector<std::string> x, std::ve
         mag.push_back(std::to_string(magnitude));
     }
 
-    //Print magnitudes to terminal for N specified
-    std::cout << "The magnitudes of x and y are: " << std::endl;
-    for(int i = 0; i < mag.size(); i++){
-        std::cout << mag[i] << std::endl;
-    }
+    //Print magnitudes to terminal
+    print("The magnitudes of the x and y values are: ");
+    print(mag);
 }
 
 //Function for straight line fitting 
@@ -74,7 +88,7 @@ std::string linear_fit(std::vector<std::string> x, std::vector<std::string> y){
     c = ((sum_x_sqrd*sum_y)-(sum_xy*sum_x))/((N*sum_x_sqrd)-(sum_x*sum_x));
 
     //print to terminal
-    std::cout << "The straight line fit is: y = " << m << "x + " << c << std::endl;
+    print("The straight line fit is: y = " + std::to_string(m) + "x + " + std::to_string(c));
 
     //Create file with the straight line fit
     std::string filename = "linear_fit.txt";
