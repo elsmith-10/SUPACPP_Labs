@@ -159,13 +159,27 @@ std::string linear_fit(std::vector<std::string> x, std::vector<std::string> y){
     return filename;
 }
 
+//Use recursive method
+float power(float x, int y){
+     if (y == 0){
+          return 1;
+        }
+     else if (y > 0){
+           return x * power(x, y - 1);
+        }
+    else{
+        return 1 / power(x, -y);
+        }
+    }
+
 //function for  calculating x to power y
 std::vector<std::string>xpowery(std::vector<std::string>x,std::vector<std::string>y){
-    
-    //convert y into integer valuse
-    std::vector<int> y_int = std::stoi(y);
 
-    //Use recursive method
-    
-
+    //loop through the x and y values and calculate x to the power of y
+    for (int i = 0; i < x.size(); i++){
+        float x_val = std::stof(x[i]);
+        int y_val = std::stoi(y[i]);
+        float result = power(x_val, y_val);
+        std::cout << x_val << " to the power of " << y_val << " is: " << result << std::endl;
+    }
 }
