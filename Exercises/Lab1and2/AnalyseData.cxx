@@ -42,7 +42,7 @@ int main()
     y.erase(y.begin());
 
 //Ask the user what function they would like to use
-    std::cout << "What function would you like to use? (1: Print Lines, 2: Calculate Magnitudes, 3:Linear Fit, 4: x to power y)" << std::endl;
+    std::cout << "What function would you like to use? (1: Print Lines, 2: Calculate Magnitudes, 3: Linear Fit, 4: x to power y)" << std::endl;
     int function_choice;
     std::cin >> function_choice;
 
@@ -61,6 +61,7 @@ int main()
     else{
         std::cout << "Not a function choice" << std::endl;
     }
+
 
     data_file.close(); 
 
