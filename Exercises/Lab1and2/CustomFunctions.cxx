@@ -20,7 +20,8 @@ void print(std::string A){
 }
 
 //Function for printing lines to the terminal
-std::vector<std::string> print_lines(std::vector<std::string> x, std::vector<std::string> y){
+std::string print_lines(std::vector<std::string> x, std::vector<std::string> y){
+
     //Question to terminal user about number of lines to print and max
     std::cout << "How many lines would you like printing? (max: " << x.size() << ")" << std::endl;
     
@@ -52,10 +53,12 @@ std::vector<std::string> print_lines(std::vector<std::string> x, std::vector<std
     }
 
     outputfile.close();
+
+    return filename;
 }
 
 //Function for calculating the magnitudes of x and y
-std::vector<std::string> calculate_magnitude(std::vector<std::string> x, std::vector<std::string> y){
+std::string calculate_magnitude(std::vector<std::string> x, std::vector<std::string> y){
     //Make vector to write the magnitudes into
     std::vector<std::string> mag;
 
@@ -79,6 +82,8 @@ std::vector<std::string> calculate_magnitude(std::vector<std::string> x, std::ve
         outputfile << mag[i] << std::endl;    
 }
     outputfile.close();
+
+    return filename;
 }
 
 //Function for straight line fitting 
@@ -192,7 +197,7 @@ float power(float x, int y){
     }
 
 //function for  calculating x to power y
-std::vector<std::string>xpowery(std::vector<std::string>x,std::vector<std::string>y){
+std::string xpowery(std::vector<std::string>x,std::vector<std::string>y){
     std::vector<std::string> result_list;
     //loop through the x and y values and calculate x to the power of y
     for (int i = 0; i < x.size(); i++){
@@ -213,5 +218,6 @@ std::vector<std::string>xpowery(std::vector<std::string>x,std::vector<std::strin
         outputfile << result_list[i] << std::endl;     
 }
     outputfile.close();
-    
+
+    return filename;
 }
