@@ -3,6 +3,30 @@
 #include <vector>
 #include "CustomFunctions.h"
 
+//Main function for the choices selection
+void choice_function(const std::vector<std::string>& x, const std::vector<std::string>& y)
+{
+    std::cout << "What function would you like to use? (1: Print Lines, 2: Calculate Magnitudes, 3: Linear Fit, 4: x to power y)" << std::endl;
+    int function_choice;
+    std::cin >> function_choice;
+
+    if(function_choice == 1){
+        std::vector<std::string> A = print_lines(x, y);
+    }
+    else if(function_choice == 2){
+        std::vector<std::string> B = calculate_magnitude(x, y);
+    }
+    else if(function_choice == 3){
+        std::string C = linear_fit(x, y);
+    }
+    else if(function_choice == 4){
+        std::vector<std::string> D = xpowery(x, y);
+    }
+    else{
+        std::cout << "Not a function choice" << std::endl;
+    }
+}
+
 int main()
 {
     //Open file
@@ -41,27 +65,24 @@ int main()
     x.erase(x.begin());
     y.erase(y.begin());
 
-//Ask the user what function they would like to use
-    std::cout << "What function would you like to use? (1: Print Lines, 2: Calculate Magnitudes, 3: Linear Fit, 4: x to power y)" << std::endl;
-    int function_choice;
-    std::cin >> function_choice;
+    //after splitting data, run through choice and actions
+    choice_function(x,y);
 
-    if(function_choice ==1){
-        std::vector<std::string> A = print_lines(x, y);
+    //Ask user if they would like to choose another function or end
+
+    std::cout << "Do you want to perform another action? (1: Yes, 0: No)" << std::endl;
+    int user_decision;
+    std::cin>>user_decision;
+
+    if(user_decision==1){
+        choice_function(x, y);
     }
-    else if(function_choice ==2){
-        std::vector<std::string> B = calculate_magnitude(x, y);
-    }
-    else if(function_choice ==3){
-        std::string C = linear_fit(x, y);
-    }
-    else if(function_choice ==4){
-        std::vector<std::string> D = xpowery(x, y);
+    else if(user_decision==0){
+        std::cout<<"End actions"<<std::endl;
     }
     else{
-        std::cout << "Not a function choice" << std::endl;
-    }
-
+            std::cout << "Not an action choice" << std::endl;
+        }
 
     data_file.close(); 
 
