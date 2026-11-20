@@ -4,23 +4,19 @@
 #include <cmath>
  
 //Create overload print functions
-std::vector<std::string> print(std::vector<std::string> A){
+void print(std::vector<std::string> A){
 for(int i = 0; i < A.size(); i++){
-        std::cout << A[i] << std::endl;
-return A;        
+        std::cout << A[i] << std::endl;        
 }
 }
-float print(float A){
+void print(float A){
     std::cout << A << std::endl;
-return A;
 }
-int print(int A){
+void print(int A){
     std::cout << A << std::endl;
-return A;
 }
-std::string print(std::string A){
+void print(std::string A){
     std::cout << A << std::endl;
-return A;
 }
 
 //Function for printing lines to the terminal
@@ -44,6 +40,18 @@ std::vector<std::string> print_lines(std::vector<std::string> x, std::vector<std
     for(int i = 0; i < N; i++){
          std::cout << x[i] << ", " << y[i] << std::endl;
     }
+
+    //create a file to save the lines
+    std::string filename = "print_lines.txt";
+    std::ofstream outputfile;
+    outputfile.open(filename);
+
+    //Append file with x and y values
+    for(int i = 0; i < N; i++){
+        outputfile << x[i] << ", " << y[i]   << std::endl;
+    }
+
+    outputfile.close();
 }
 
 //Function for calculating the magnitudes of x and y
@@ -60,6 +68,17 @@ std::vector<std::string> calculate_magnitude(std::vector<std::string> x, std::ve
     //Print magnitudes to terminal
     print("The magnitudes of the x and y values are: ");
     print(mag);
+
+    //Create a file for magnitudes
+    std::string filename = "magnitude.txt";
+    std::ofstream outputfile;
+    outputfile.open(filename);
+
+    //Append file with magnitudes
+    for(int i = 0; i < mag.size(); i++){
+        outputfile << mag[i] << std::endl;    
+}
+    outputfile.close();
 }
 
 //Function for straight line fitting 
@@ -174,12 +193,25 @@ float power(float x, int y){
 
 //function for  calculating x to power y
 std::vector<std::string>xpowery(std::vector<std::string>x,std::vector<std::string>y){
-
+    std::vector<std::string> result_list;
     //loop through the x and y values and calculate x to the power of y
     for (int i = 0; i < x.size(); i++){
         float x_val = std::stof(x[i]);
         int y_val = std::stoi(y[i]);
         float result = power(x_val, y_val);
-        std::cout << x_val << " to the power of " << y_val << " is: " << result << std::endl;
+        std::cout << x_val << " to power of " << y_val << " is: " << result << std::endl;
+        result_list.push_back(std::to_string(result));
     }
+
+    //Create a file for x to power y
+    std::string filename = "xpowery.txt";
+    std::ofstream outputfile;
+    outputfile.open(filename);
+
+    //Append file with x to power y
+    for(int i = 0; i < result_list.size(); i++){
+        outputfile << result_list[i] << std::endl;     
+}
+    outputfile.close();
+    
 }
