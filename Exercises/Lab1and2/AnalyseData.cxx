@@ -1,35 +1,39 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include "CustomFunctions.h"
+#include "CustomFunction.h"
 
-//Main function for the choices selection
-void choice_function(const std::vector<std::string>& x, const std::vector<std::string>& y)
-{
-    std::cout << "What function would you like to use? (1: Print Lines, 2: Calculate Magnitudes, 3: Linear Fit, 4: x to power y)" << std::endl;
-    int function_choice;
-    std::cin >> function_choice;
+//Create recursive loop for question 
+int Recursive_loop(std::vector<std::string> x,std::vector<std::string> y){
+    std::cout<<"What action would you like? (0: None, 1: Print Lines, 2: Calculate Magnitudes, 3: Linear Fit, 4: xpowery)"<<std::endl;
+    int User_choice;
+    std::cin>>User_choice;
 
-    if(function_choice == 1){
-        std::vector<std::string> A = print_lines(x, y);
+    if(User_choice==1){
+        print_lines(x,y);
     }
-    else if(function_choice == 2){
-        std::vector<std::string> B = calculate_magnitude(x, y);
+    if(User_choice==2){
+        calculate_magnitude(x,y);
     }
-    else if(function_choice == 3){
-        std::string C = linear_fit(x, y);
+    if(User_choice==3){
+        linear_fit(x,y);
     }
-    else if(function_choice == 4){
-        std::vector<std::string> D = xpowery(x, y);
+     if(User_choice==4){
+        xpowery(x,y);
     }
-    else{
-        std::cout << "Not a function choice" << std::endl;
+     if(User_choice>=5){
+        std::cout<<"Invalid number choice."<<std::endl;
     }
+
+    //breaks loop
+    if (User_choice==0){
+        return 0;
+    }
+
+    return Recursive_loop(x,y);
 }
 
-int main()
-{
-
+int main(){
     //Open file
     std::string inputfile = "input2D_float.txt";
     std::ifstream data_file;
@@ -66,26 +70,7 @@ int main()
     x.erase(x.begin());
     y.erase(y.begin());
 
-    //after splitting data, run through choice and actions
-    choice_function(x,y);
-
-    //Ask user if they would like to choose another function or end
-
-    std::cout << "Do you want to perform another action? (1: Yes, 0: No)" << std::endl;
-    int user_decision;
-    std::cin>>user_decision;
-
-    if(user_decision==1){
-        choice_function(x, y);
-    }
-    else if(user_decision==0){
-        std::cout<<"End actions"<<std::endl;
-    }
-    else{
-            std::cout << "Not an action choice" << std::endl;
-        }
-
-    data_file.close(); 
+    Recursive_loop(x,y);
 
     return 0;
 }
